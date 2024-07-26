@@ -1,23 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { Events } from "../database/Dummydata";
 
 function Nominees() {
   const { categoryId } = useParams();
-  let selectedNominees = null;
+  const [VoteMenu, setVoteMenu] = useState(false);
+  const [sNominee, setsNominee] = useState(null);
+  const [votes, setVotes] = useState("");
+  const [Number, setNumber] = useState("");
+
+  let sNominees = null;
   let categoryName = "";
   let eventId = "";
 
   Events.forEach((event) => {
     event.categories.forEach((category) => {
       if (category.id === parseInt(categoryId)) {
-        selectedNominees = category.nominees;
+        sNominees = category.nominees;
         categoryName = category.name;
         eventId = event.id;
       }
     });
   });
+
+  const handleVoteClick = (nominee) => {
+    setsNominee(nominee);
+    setVoteMenu(true);
+  };
+
+  const VoteSubmit = () => {
+
+
+    setVoteMenu(false);
+  };
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -54,12 +70,12 @@ function Nominees() {
           Nominees for {categoryName}
         </h1>
 
-        {selectedNominees ? (
+        {sNominees ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {selectedNominees.map((nominee) => (
+            {sNominees.map((nominee) => (
               <div
                 key={nominee.id}
-                className="bg-white p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg"
+                className="bg-white p-6 rounded-lg transform transition duration-300"
               >
                 <div className="flex justify-center mb-4">
                   <img
@@ -71,6 +87,14 @@ function Nominees() {
                 <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center">
                   {nominee.name}
                 </h3>
+                <div className="flex justify-center items-center w-full p-2 bg-blue-500 text-white font-bold rounded-sm">
+                  <button
+                    className="w-full"
+                    onClick={() => handleVoteClick(nominee)}
+                  >
+                    Vote
+                  </button>
+                </div>
               </div>
             ))}
           </div>
@@ -78,6 +102,43 @@ function Nominees() {
           <p className="text-gray-600">No nominees found for this category.</p>
         )}
       </div>
+
+      {VoteMenu && (
+        <div className="fixed bottom-0 left-0 right-0 bg-white p-4 border-t shadow-lg transition-transform transform translate-y-0">
+          <p>50p per vote</p>
+          <h2 className="text-lg font-bold mb-4">
+            Vote for {sNominee.name}
+          </h2>
+          <div className="mb-4">
+            <label className="block text-sm font-bold mb-2">
+              Number of Votes
+            </label>
+            <input
+              type="number"
+              className="w-full p-2 border rounded"
+              value={votes}
+              onChange={(e) => setVotes(e.target.value)}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-bold mb-2">
+              Mobile Number
+            </label>
+            <input
+              type="text"
+              className="w-full p-2 border rounded"
+              value={Number}
+              onChange={(e) => setNumber(e.target.value)}
+            />
+          </div>
+          <button
+            className="w-full bg-blue-500 text-white p-2 rounded"
+            onClick={VoteSubmit}
+          >
+            Submit Vote
+          </button>
+        </div>
+      )}
     </div>
   );
 }

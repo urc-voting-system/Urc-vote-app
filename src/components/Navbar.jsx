@@ -18,41 +18,23 @@ function Navbar() {
             <h1>VoteMe</h1>
           </div>
         </Link>
-        <div className="hidden md:flex gap-5">
-          <ul className="flex gap-5">
+        <div className="hidden md:flex gap-5 ">
+          {/* <ul className="flex gap-5">
             <li>
               <Link to="/about">About Us</Link>
             </li>
             <li>
               <Link to="/register">Register</Link>
             </li>
-          </ul>
+          </ul> */}
         </div>
         <div className="md:hidden">
           <button
             onClick={MobileView}
             className="text-2xl font-bold duration-200 ease-out"
-          >
-            {isMobile ? "✕" : "☰"}
-          </button>
+          ></button>
         </div>
       </div>
-      {isMobile && (
-        <div className="md:hidden  ">
-          <ul className="flex flex-col gap-3">
-            <li>
-              <Link to="/about" onClick={MobileView}>
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link to="/register" onClick={MobileView}>
-                Register
-              </Link>
-            </li>
-          </ul>
-        </div>
-      )}
     </div>
   );
 }

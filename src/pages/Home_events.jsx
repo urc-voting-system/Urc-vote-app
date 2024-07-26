@@ -16,9 +16,7 @@ function HomeEvents() {
     <div className="relative min-h-screen">
       <Navbar />
       <div className="relative max-h-[450px]">
-        <img src={hero} alt="Hero" className="w-full h-screen" />
-        <div className="bg-white w-full h-screen absolute top-0 bg-opacity-75 backdrop-blur-3xl"></div>
-        <div className="absolute inset-0 flex flex-col justify-center items-center p-5 md:mx-40">
+        <div className=" inset-0 flex flex-col justify-center items-center p-5 md:mx-40">
           <h1 className="text-4xl font-bold mb-4 text-center">
             Secure and Dependable Electronic Voting System
           </h1>
