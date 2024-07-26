@@ -30,8 +30,6 @@ function Nominees() {
   };
 
   const VoteSubmit = () => {
-
-
     setVoteMenu(false);
   };
 
@@ -103,42 +101,40 @@ function Nominees() {
         )}
       </div>
 
-      {VoteMenu && (
-        <div className="fixed bottom-0 left-0 right-0 bg-white p-4 border-t shadow-lg transition-transform transform translate-y-0">
-          <p>50p per vote</p>
-          <h2 className="text-lg font-bold mb-4">
-            Vote for {sNominee.name}
-          </h2>
-          <div className="mb-4">
-            <label className="block text-sm font-bold mb-2">
-              Number of Votes
-            </label>
-            <input
-              type="number"
-              className="w-full p-2 border rounded"
-              value={votes}
-              onChange={(e) => setVotes(e.target.value)}
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-bold mb-2">
-              Mobile Number
-            </label>
-            <input
-              type="text"
-              className="w-full p-2 border rounded"
-              value={Number}
-              onChange={(e) => setNumber(e.target.value)}
-            />
-          </div>
-          <button
-            className="w-full bg-blue-500 text-white p-2 rounded"
-            onClick={VoteSubmit}
-          >
-            Submit Vote
-          </button>
+      {/* {VoteMenu && (
+          <div className="fixed  bottom-0 left-0 right-0 bg-white p-4 border-t shadow-lg w-full  transition-transform transform translate-y-0">
+            <p>50p per vote</p>
+            <h2 className="text-lg font-bold mb-4">Vote for {sNominee.name}</h2>
+            <div className="mb-4">
+              <label className="block text-sm font-bold mb-2">
+                Number of Votes
+              </label>
+              <input
+                type="number"
+                className="w-full p-2 border rounded"
+                value={votes}
+                onChange={(e) => setVotes(e.target.value)}
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-bold mb-2">
+                Mobile Number
+              </label>
+              <input
+                type="text"
+                className="w-full p-2 border rounded"
+                value={Number}
+                onChange={(e) => setNumber(e.target.value)}
+              />
+            </div>
+            <button
+              className="w-full bg-blue-500 text-white p-2 rounded"
+              onClick={VoteSubmit}
+            >
+              Submit Vote
+            </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
