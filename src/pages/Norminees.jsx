@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { Events } from "../database/Dummydata";
+import { db } from "../../Firebase"; 
+import { ref, set } from "firebase/database";
 
 function Nominees() {
   const { categoryId } = useParams();
-  const [VoteMenu, setVoteMenu] = useState(false);
-  const [sNominee, setsNominee] = useState(null);
-  const [votes, setVotes] = useState("");
-  const [Number, setNumber] = useState("");
+  const [voteMenu, setVoteMenu] = useState(false);
+  const [sNominee, setSNominee] = useState(null);
+  const [email, setEmail] = useState(""); 
 
   let sNominees = null;
   let categoryName = "";
@@ -25,12 +26,25 @@ function Nominees() {
   });
 
   const handleVoteClick = (nominee) => {
-    setsNominee(nominee);
+    setSNominee(nominee);
     setVoteMenu(true);
   };
 
-  const VoteSubmit = () => {
-    setVoteMenu(false);
+  const handleVoteSubmit = async () => {
+    try {
+      if (sNominee && email) {
+        const votesRef = ref(db, `votes/${eventId}/${categoryId}/${sNominee.id}`);
+        await set(votesRef, {
+          nomineeId: sNominee.id,
+          email: email,
+          timestamp: new Date().toISOString()
+        });
+        setVoteMenu(false);
+        setEmail(""); 
+      }
+    } catch (error) {
+      console.error("Error submitting vote:", error);
+    }
   };
 
   return (
@@ -101,40 +115,7 @@ function Nominees() {
         )}
       </div>
 
-      {/* {VoteMenu && (
-          <div className="fixed  bottom-0 left-0 right-0 bg-white p-4 border-t shadow-lg w-full  transition-transform transform translate-y-0">
-            <p>50p per vote</p>
-            <h2 className="text-lg font-bold mb-4">Vote for {sNominee.name}</h2>
-            <div className="mb-4">
-              <label className="block text-sm font-bold mb-2">
-                Number of Votes
-              </label>
-              <input
-                type="number"
-                className="w-full p-2 border rounded"
-                value={votes}
-                onChange={(e) => setVotes(e.target.value)}
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-bold mb-2">
-                Mobile Number
-              </label>
-              <input
-                type="text"
-                className="w-full p-2 border rounded"
-                value={Number}
-                onChange={(e) => setNumber(e.target.value)}
-              />
-            </div>
-            <button
-              className="w-full bg-blue-500 text-white p-2 rounded"
-              onClick={VoteSubmit}
-            >
-              Submit Vote
-            </button>
-        </div>
-      )} */}
+     
     </div>
   );
 }
