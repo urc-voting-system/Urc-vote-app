@@ -10,7 +10,7 @@ function Navbar() {
   };
 
   return (
-    <div className=" w-full p-5 md:px-20 bg-gray-200 bg-opacity-75 backdrop-blur-xl ">
+    <div className=" w-full p-5 md:px-20 bg-opacity-75 backdrop-blur-xl ">
       <div className="flex justify-between items-center">
         <Link to={"/"}>
           <div className="flex items-center flex-col md:flex-row font-bold text-primary">
@@ -19,14 +19,6 @@ function Navbar() {
           </div>
         </Link>
         <div className="hidden md:flex gap-5 ">
-          {/* <ul className="flex gap-5">
-            <li>
-              <Link to="/about">About Us</Link>
-            </li>
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-          </ul> */}
         </div>
         <div className="md:hidden">
           <button

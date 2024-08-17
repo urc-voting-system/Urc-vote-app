@@ -4,6 +4,7 @@ import HomeEvents from "./pages/Home_events";
 import Nominees from "./pages/Norminees";
 import Categories from "./pages/Categories";
 import Missing from "./pages/Missing";
+import Admin from "../admin/Admin";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <Route path="/" element={<HomeEvents />} />
         <Route path="/categories/:eventId" element={<Categories />} />
         <Route path="/category/nominee/:categoryId" element={<Nominees />} />
-        <Route path="*" element={<Missing/>}/>
+        <Route path="/admin" element={<Admin />} />
+        <Route path="*" element={<Missing />} />
       </Routes>
     </Router>
   );

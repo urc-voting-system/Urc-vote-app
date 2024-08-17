@@ -26,7 +26,6 @@ function Categories() {
             </li>
           </ol>
         </nav>
-
         {event && (
           <div className="bg- p-6 rounded-lg shadow-sm mb-6">
             <div className="md:flex">
