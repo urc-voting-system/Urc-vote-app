@@ -24,7 +24,7 @@ const EventSchema = new mongoose.Schema(
           type: String,
           required: true,
         },
-        description: {
+        catDesc: {
           type: String,
           required: true,
         },

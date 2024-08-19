@@ -5,15 +5,24 @@ const EventModel = require("../models/Event");
 // add new event
 router.post("/new", async (req, res) => {
   try {
+    const { eventName, endDate, status, bannerImg, categories } = req.body;
+
+    // Basic validation
+    if (!eventName || !endDate || !status || !bannerImg || !categories) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    // Create the event
     const event = await EventModel.create(req.body);
     if (event) {
-      return res.status(200).json({ message: "event created" });
+      return res.status(200).json({ message: "Event created successfully" });
     }
-    res.json({ message: "event not created" });
+    res.status(400).json({ message: "Event not created" });
   } catch (error) {
+    console.error("Error creating event:", error);
     return res
       .status(500)
-      .json({ message: "could not send new event to database" });
+      .json({ message: "Could not send new event to database" });
   }
 });
 

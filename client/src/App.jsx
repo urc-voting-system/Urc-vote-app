@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomeEvents />} />
         <Route path="/categories/:eventId" element={<Categories />} />
-        <Route path="/category/nominee/:categoryId" element={<Nominees />} />
+        <Route path="/category/:id/nominees" element={<Nominees />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="*" element={<Missing />} />
       </Routes>

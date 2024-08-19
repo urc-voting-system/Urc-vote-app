@@ -1,11 +1,23 @@
-import React from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { Events } from "../database/Dummydata";
+// import { Events } from "../database/Dummydata";
+import { useState, useEffect } from "react";
 
 function Categories() {
-  const { eventId } = useParams();
-  const event = Events.find((event) => event.id === parseInt(eventId));
+  // const { eventId } = useParams();
+  // const event = Events.find((event) => event.id === parseInt(eventId));
+
+  const [event, setEvent] = useState([]);
+  const [index, setIndex] = useState(null);
+  const ID = useParams();
+
+  const id = ID.eventId;
+
+  useEffect(() => {
+    fetch(`http://localhost:3001/events/${id}`)
+      .then((res) => res.json())
+      .then((data) => setEvent(data));
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -26,19 +38,19 @@ function Categories() {
             </li>
           </ol>
         </nav>
-        {event && (
-          <div className="bg- p-6 rounded-lg shadow-sm mb-6">
+        {event ? (
+          <div className="p-6 rounded-lg shadow-sm mb-6">
             <div className="md:flex">
               <div className="flex-shrink-0">
                 <img
-                  src={event.image}
-                  alt={event.name}
-                  className="w-full h-64 md:w-48 object-fit rounded-lg"
+                  src={event.bannerImg}
+                  alt={event.eventName}
+                  className="w-full h-64 md:w-48 object-cover rounded-lg"
                 />
               </div>
               <div className="mt-4 md:mt-0 md:ml-6">
                 <h1 className="text-2xl font-bold text-gray-800">
-                  {event.name}
+                  {event.eventName}
                 </h1>
                 <h2 className="mt-2 text-lg font-semibold text-gray-600">
                   End Date:
@@ -54,26 +66,33 @@ function Categories() {
             <div className="mt-8">
               <h2 className="text-xl font-bold text-gray-800">Categories</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">
-                {event.categories.map((category) => (
-                  <div
-                    key={category.id}
-                    className="bg-white p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg"
-                  >
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                      {category.name}
-                    </h3>
-                    <p className="text-gray-600">{category.description}</p>
-                    <Link
-                      to={`/category/nominee/${category.id}`}
-                      className="text-blue-600 hover:text-blue-800 mt-2 block text-center"
+                {event.categories && event.categories.length > 0 ? (
+                  event.categories.map((category, index) => (
+                    <div
+                      key={category._id}
+                      className="bg-white p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg"
                     >
-                      Cast Votes
-                    </Link>
-                  </div>
-                ))}
+                      <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                        {category.catName}
+                      </h3>
+                      <p className="text-gray-600">{category.catDesc}</p>
+                      <Link
+                        to={`/category/${event._id}-${index}/nominees`}
+                        onClick={() => setIndex(index)}
+                        className="text-white py-2 bg-blue-500 mt-2 block text-center"
+                      >
+                        See Details
+                      </Link>
+                    </div>
+                  ))
+                ) : (
+                  <p>No categories available</p>
+                )}
               </div>
             </div>
           </div>
+        ) : (
+          <p>Loading event details...</p>
         )}
       </div>
     </div>

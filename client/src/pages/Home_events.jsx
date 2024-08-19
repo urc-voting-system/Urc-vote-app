@@ -43,9 +43,9 @@ function HomeEvents() {
         </div>
 
         <div className="mx-5 md:mx-10 lg:mx-20">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             {filteredEvents.map((event) => (
-              <Link to={`/categories/${event.id}`} key={Math.random() * 10}>
+              <Link to={`/categories/${event._id}`} key={event._id}>
                 <div
                   className="card bg-blue-100 h-max rounded-lg p-5"
                   style={{
