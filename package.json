@@ -1,0 +1,15 @@
+{
+  "name": "urc-vote-app",
+  "version": "1.0.0",
+  "description": "package.json",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Urc-vote-app"
+  },
+  "author": "",
+  "license": "ISC"
+}
