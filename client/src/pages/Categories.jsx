@@ -77,7 +77,7 @@ function Categories() {
                       </h3>
                       <p className="text-gray-600">{category.catDesc}</p>
                       <Link
-                        to={`/category/${event._id}-${index}/nominees`}
+                        to={`/category/${event._id}-${index}-${category._id}/nominees`}
                         onClick={() => setIndex(index)}
                         className="text-white py-2 bg-blue-500 mt-2 block text-center"
                       >

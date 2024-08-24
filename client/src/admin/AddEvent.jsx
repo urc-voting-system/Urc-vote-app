@@ -11,12 +11,7 @@ const AddEvent = () => {
 
   const [catName, setCatName] = useState("");
   const [catDesc, setCatDesc] = useState("");
-  const [categories, setCategories] = useState([
-    {
-      catName: "test",
-      catDesc: "test description",
-    },
-  ]);
+  const [categories, setCategories] = useState([]);
 
   const clearForm = () => {
     setEventName("");
@@ -57,7 +52,7 @@ const AddEvent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log({ eventName, endDate, status, bannerImg, categories });
+    // console.log({ eventName, endDate, status, bannerImg, categories });
 
     try {
       const response = await axios.post("http://localhost:3001/events/new", {
@@ -69,6 +64,7 @@ const AddEvent = () => {
       });
       if (response.status === 200) {
         clearForm();
+        console.log(response);
       }
     } catch (error) {
       console.log("Event not sent", error);
@@ -191,7 +187,10 @@ const AddEvent = () => {
           <ul className="my-5">
             {categories.length ? (
               categories.map((item) => (
-                <div className="flex align-center space-x-2">
+                <div
+                  className="flex align-center space-x-2"
+                  key={Math.random() * 10}
+                >
                   <span>*</span>
                   <li key={item.catName}>
                     {item.catName},{" "}

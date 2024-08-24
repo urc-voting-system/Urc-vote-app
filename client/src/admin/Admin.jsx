@@ -4,7 +4,7 @@ import AdminContent from "./AdminContent";
 const Admin = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState("");
   const [verified, setVerified] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -18,7 +18,7 @@ const Admin = () => {
       {!verified ? (
         <div>
           <form onSubmit={handleSubmit} className="space-y-4 p-5">
-            {error && <p className="text-red-500 text-sm">{error}</p>}
+            {/* {error && <p className="text-red-500 text-sm">{error}</p>} */}
             <div>
               <label
                 htmlFor="name"

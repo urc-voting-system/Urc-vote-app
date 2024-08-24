@@ -5,6 +5,7 @@ import Nominees from "./pages/Norminees";
 import Categories from "./pages/Categories";
 import Missing from "./pages/Missing";
 import Admin from "./admin/Admin";
+import MakeVote from "./pages/MakeVote";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<HomeEvents />} />
         <Route path="/categories/:eventId" element={<Categories />} />
         <Route path="/category/:id/nominees" element={<Nominees />} />
+        <Route path="/makevote/for/:id/" element={<MakeVote />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="*" element={<Missing />} />
       </Routes>

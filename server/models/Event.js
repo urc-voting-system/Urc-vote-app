@@ -28,18 +28,18 @@ const EventSchema = new mongoose.Schema(
           type: String,
           required: true,
         },
-        nominees: [
-          {
-            name: {
-              type: String,
-              required: true,
-            },
-            image: {
-              type: String,
-              required: true,
-            },
-          },
-        ],
+        // nominees: [
+        //   {
+        //     name: {
+        //       type: String,
+        //       required: true,
+        //     },
+        //     image: {
+        //       type: String,
+        //       required: true,
+        //     },
+        //   },
+        // ],
       },
     ],
   },

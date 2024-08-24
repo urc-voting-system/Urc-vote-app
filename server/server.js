@@ -7,6 +7,7 @@ const port = process.env.PORT || 3001;
 const app = express();
 
 const EventsRoutes = require("./routes/events");
+const NomineesRoutes = require("./routes/nominees");
 
 app.use(cors());
 
@@ -23,3 +24,4 @@ mongoose
 
 // Routes
 app.use("/events", EventsRoutes);
+app.use("/nominees", NomineesRoutes);
