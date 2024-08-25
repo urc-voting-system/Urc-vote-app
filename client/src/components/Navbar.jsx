@@ -18,13 +18,15 @@ function Navbar() {
             <h1>VoteMe</h1>
           </div>
         </Link>
-        <div className="hidden md:flex gap-5 ">
-        </div>
+        <div className="hidden md:flex gap-5 "></div>
         <div className="md:hidden">
           <button
             onClick={MobileView}
             className="text-2xl font-bold duration-200 ease-out"
           ></button>
+        </div>
+        <div className=" opacity-5 border p-3">
+          <Link to="/admin">Admin</Link>
         </div>
       </div>
     </div>
