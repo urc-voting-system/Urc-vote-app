@@ -50,7 +50,7 @@ function HomeEvents() {
                   className="card bg-blue-100 h-max rounded-lg p-5"
                   style={{
                     backgroundImage:
-                      "linear-gradient(to top right, #DFDCCD, #DAE7F5)",
+                      "linear-gradient(to top right, #F3F2EF, #EDF3FA)",
                   }}
                 >
                   <div className="object-cover flex justify-center">
